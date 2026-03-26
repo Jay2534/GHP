@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    var url = "https://script.google.com/macros/s/AKfycbzJ55pA_zj5FRUNe7zKP38SH_SyPI9BkV2LBCxpKUJvsdDndrxv0Wy4fxYUqIwJ6Sv0ZQ/exec"; // 🔥 ใส่ลิงก์ GAS ของคุณ
+    var url = "https://script.google.com/macros/s/AKfycbzJ55pA_zj5FRUNe7zKP38SH_SyPI9BkV2LBCxpKUJvsdDndrxv0Wy4fxYUqIwJ6Sv0ZQ/exec";
 
     function openApp() {
       var ua = navigator.userAgent || "";
@@ -15,23 +15,25 @@
         return;
       }
 
-      // iOS → Safari (force)
+      // iOS → Safari
       if (/iPhone|iPad|iPod/i.test(ua)) {
         window.location.href = url;
         return;
       }
 
       // Browser ปกติ
-      window.location.href = url;
+      window.location.replace(url);
     }
 
     window.onload = function() {
-      openApp();
 
-      // fallback
+      // แสดงปุ่มก่อน (กัน blank)
+      document.getElementById("btn").style.display = "inline-block";
+
+      // delay นิดนึงให้เห็น UI
       setTimeout(function() {
-        document.getElementById("btn").style.display = "block";
-      }, 1500);
+        openApp();
+      }, 300);
     };
   </script>
 </head>
@@ -40,9 +42,9 @@
   <h2>กำลังเปิดเว็บไซต์...</h2>
   <p>หากไม่เด้งอัตโนมัติ กรุณากดปุ่มด้านล่าง</p>
 
-  <a id="btn" href="#" onclick="openApp()" 
-     style="display:none;padding:12px 20px;background:#16a34a;color:#fff;border-radius:8px;text-decoration:none">
+  <button id="btn" onclick="openApp()" 
+     style="display:none;padding:12px 20px;background:#16a34a;color:#fff;border:none;border-radius:8px;cursor:pointer">
      🔗 เปิดเว็บไซต์
-  </a>
+  </button>
 </body>
 </html>
