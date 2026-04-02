@@ -1,35 +1,22 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Redirecting...</title>
+
+  <!-- ✅ FORCE REDIRECT -->
+  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbzJ55pA_zj5FRUNe7zKP38SH_SyPI9BkV2LBCxpKUJvsdDndrxv0Wy4fxYUqIwJ6Sv0ZQ/exec">
+
   <script>
     var url = "https://script.google.com/macros/s/AKfycbzJ55pA_zj5FRUNe7zKP38SH_SyPI9BkV2LBCxpKUJvsdDndrxv0Wy4fxYUqIwJ6Sv0ZQ/exec";
 
     function openApp() {
-      var ua = navigator.userAgent || "";
-
-      // Android → Chrome
-      if (/android/i.test(ua)) {
-        window.location.href = "intent://" + url.replace(/^https?:\/\//, '') + "#Intent;scheme=https;package=com.android.chrome;end";
-        return;
-      }
-
-      // iOS → Safari
-      if (/iPhone|iPad|iPod/i.test(ua)) {
-        window.location.href = url;
-        return;
-      }
-
-      // Browser ปกติ
-      window.location.replace(url);
+      // 🔥 ใช้ top เพื่อหนี iframe/in-app browser
+      window.top.location.href = url;
     }
 
     window.onload = function() {
-
-      // แสดงปุ่มก่อน (กัน blank)
-      document.getElementById("btn").style.display = "inline-block";
-
-      // delay นิดนึงให้เห็น UI
+      // delay เล็กน้อยให้ iOS ยอม
       setTimeout(function() {
         openApp();
       }, 300);
@@ -41,9 +28,10 @@
   <h2>กำลังเปิดเว็บไซต์...</h2>
   <p>หากไม่เด้งอัตโนมัติ กรุณากดปุ่มด้านล่าง</p>
 
-  <button id="btn" onclick="openApp()" 
-     style="display:none;padding:12px 20px;background:#16a34a;color:#fff;border:none;border-radius:8px;cursor:pointer">
+  <!-- ✅ FIX ปุ่ม -->
+  <a href="https://script.google.com/macros/s/AKfycbzJ55pA_zj5FRUNe7zKP38SH_SyPI9BkV2LBCxpKUJvsdDndrxv0Wy4fxYUqIwJ6Sv0ZQ/exec"
+     style="display:inline-block;padding:12px 20px;background:#16a34a;color:#fff;border-radius:8px;text-decoration:none">
      🔗 เปิดเว็บไซต์
-  </button>
+  </a>
 </body>
 </html>
